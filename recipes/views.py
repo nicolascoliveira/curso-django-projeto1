@@ -4,8 +4,6 @@ from django.shortcuts import render
 # HTTP REQUEST -> HTTP RESPONSE
 def home(request):
     # HTTP REQUEST
-    return render(request, 'recipes/home.html', context={
+    return render(request, 'recipes/pages/home.html', context={
         'name': 'Nicolas',
-        'v1': 1,
-        'v2': 2,
     }) # HTTP RESPONSE
