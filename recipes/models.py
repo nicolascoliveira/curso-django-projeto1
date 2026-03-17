@@ -9,15 +9,18 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) # Data e hora de criação
     updated_at = models.DateTimeField(auto_now=True) # Data e hora de atualização
 
+    def __str__(self):
+        return self.name
+
 
 class Recipe(models.Model):
-    title = models.CharField(max_length=65), # Texto curto
-    description = models.CharField(max_length=165), # Texto curto
-    slug = models.SlugField(), # Texto curto, sem espaços, usado para URLs
-    preparation_time = models.IntegerField(), # Número inteiro
-    preparation_time_unit = models.CharField(max_length=65), # Texto curto
-    servings = models.IntegerField(), # Número inteiro
-    servings_unit = models.CharField(max_length=65), # Texto curto
+    title = models.CharField(max_length=65) # Texto curto
+    description = models.CharField(max_length=165, default='') # Texto curto
+    slug = models.SlugField() # Texto curto, sem espaços, usado para URLs
+    preparation_time = models.IntegerField() # Número inteiro
+    preparation_time_unit = models.CharField(max_length=65) # Texto curto
+    servings = models.IntegerField() # Número inteiro
+    servings_unit = models.CharField(max_length=65) # Texto curto
     preparation_steps = models.TextField() # Texto longo
     preparation_steps_is_html = models.BooleanField(default=False) # Verdadeiro ou falso
     created_at = models.DateTimeField(auto_now_add=True) # Data e hora de criação
@@ -26,3 +29,6 @@ class Recipe(models.Model):
     cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/') # Imagem
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True) # Chave estrangeira para a categoria
     author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True) # Chave estrangeira para o autor
+
+    def __str__(self):
+        return self.title
