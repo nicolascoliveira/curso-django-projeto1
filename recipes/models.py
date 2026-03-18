@@ -26,9 +26,9 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) # Data e hora de criação
     updated_at = models.DateTimeField(auto_now=True) # Data e hora de atualização
     is_published = models.BooleanField(default=False) # Verdadeiro ou falso
-    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/') # Imagem
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True) # Chave estrangeira para a categoria
-    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True) # Chave estrangeira para o autor
+    cover = models.ImageField(upload_to='recipes/covers/%Y/%m/%d/', blank=True, default='') # Imagem
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, default=None) # Chave estrangeira para a categoria
+    author = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True, blank=True, default=None) # Chave estrangeira para o autor
 
     def __str__(self):
         return self.title
